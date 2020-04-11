@@ -10,26 +10,24 @@ class App extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
-    
+     // access todosData by creating a new array map -> verify id -> verify state -> change state -> replace old array with new array
     handleChange(id) {
-        // access todosData by creating a new array map -> verify id -> verify state -> change state -> replace old array with new array
         this.setState(prevState => {
-            const updateTodos = prevState.todos.map(todo => {
-                if (todo.id == id) {
+            const updatedTodos = prevState.todos.map(todo => {
+                if (todo.id === id) {
                     todo.completed = !todo.completed
                 }
                 return todo
             })
             return {
-                todos: updateTodos
+                todos: updatedTodos
             }
         })
     }
     
     render() {
-        const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item}
-        handleChange = {this.handleChange}/>)
-
+        const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item} handleChange={this.handleChange}/>)
+        
         return (
             <div className="todo-list">
                 {todoItems}
